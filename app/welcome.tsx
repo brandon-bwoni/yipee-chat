@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   welcomeImage: {
     width: wp(100),
-    height: hp(50),
+    height: hp(60),
     alignSelf: "center",
   },
   punchLine: {

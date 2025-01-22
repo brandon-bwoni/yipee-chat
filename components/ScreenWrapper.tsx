@@ -11,8 +11,11 @@ const ScreenWrapper = ({
 }) => {
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
-
-  return <View style={{ flex: 1, backgroundColor: bg }}>{children}</View>;
+  return (
+    <View style={{ flex: 1, backgroundColor: bg || "#fff", paddingTop }}>
+      {children}
+    </View>
+  );
 };
 
 export default ScreenWrapper;

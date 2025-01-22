@@ -17,6 +17,7 @@
     "constants/theme.jsx",
     "app/welcome.tsx",
     "helpers/common.ts",
-    "app/index.jsx"
+    "app/index.jsx",
+    "assets/icons/index.tsx"
   ]
 }
