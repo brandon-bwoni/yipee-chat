@@ -1,11 +1,13 @@
 import { View, Alert, Text, StyleSheet, Pressable } from "react-native";
 import React, { useRef, useState } from "react";
-import ScreenWrapper from "@/components/ScreenWrapper";
 import { theme } from "@/constants/theme";
 import Icon from "@/assets/icons";
 import { StatusBar } from "expo-status-bar";
-import BackButton from "@/components/BackButton";
 import { useRouter } from "expo-router";
+import { supabase } from "@/lib/supabase";
+
+import BackButton from "@/components/BackButton";
+import ScreenWrapper from "@/components/ScreenWrapper";
 import { hp, wp } from "@/helpers/common";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -22,6 +24,29 @@ const Signup = () => {
       Alert.alert("Sign up", "Please fill in all fields");
       return;
     }
+
+    let name = nameRef.current.trim();
+    let email = emailRef.current.trim();
+    let password = passwordRef.current.trim();
+
+    setLoading(true);
+
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+    const session = data?.session;
+    // console.log("session:", session);
+    // console.log("error:", error);
+    if (error) {
+      Alert.alert("Sign up", error.message);
+    }
+    setLoading(false);
   };
 
   return (
